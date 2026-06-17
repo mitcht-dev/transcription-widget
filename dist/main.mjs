@@ -1,5 +1,5 @@
 const clientId = '4908b012-a9f6-45e2-92bd-4171de2fbef7';
-const redirectUri = 'http://localhost:8080/index.html';
+const redirectUri = 'https://mitcht-dev.github.io/transcription-widget/';
 
 const appName = 'transcriptApp';
 const qParamLanguage = 'language';
