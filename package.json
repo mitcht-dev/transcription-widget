@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "purecloud-client-app-sdk": "^2.6.10"
-  },
-  "allowScripts": {
-    "purecloud-client-app-sdk@2.6.10": true
-  }
-}
