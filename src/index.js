@@ -53,6 +53,8 @@ function setupGenesysClients() {
   client.setPersistSettings(true, appName);
   client.setEnvironment('usw2.pure.cloud');
 
+  debugger;
+
   return client.loginPKCEGrant(clientId, redirectUri)
     .then(data => {
       console.log('TESTING Authentication Successful!', data);
