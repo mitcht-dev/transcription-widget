@@ -6,10 +6,16 @@ const redirectUri = 'https://mitcht-dev.github.io/transcription-widget/';
 
 const appName = 'Transcript App';
 
-// Default values are assigned but values should 
-// be set on the function 'assignConfiguration'
-let language = 'en-us';
-let environment = 'usw2.pure.cloud';
+  const urlParams = new URLSearchParams(window.location.search);
+  let targetEnv = urlParams.get('gcTargetEnv');
+
+  if (targetEnv) {
+    sessionStorage.setItem('gc_environment', targetEnv);
+  } else {
+    targetEnv = sessionStorage.getItem('gc_environment') || 'usw2.pure.cloud';
+  }
+
+  environment = targetEnv;
 
 /**
  * Configure both the Platform SDK and the Client App SDK
@@ -24,7 +30,7 @@ function setupGenesysClients() {
     gcTargetEnvQueryParam: 'gcTargetEnv'
   });
 
-  environment = transcriptApp.gcEnvironment;
+  let environment = transcriptApp.gcEnvironment;
 
   // Configure and Authenticate Platform Client
   client.setPersistSettings(true, appName);
@@ -41,7 +47,6 @@ function initializeWidget() {
   console.log("Widget script is running...");
   
   console.log(`environment: ${environment}`);
-  console.log(`language: ${language}`);
 
   setupGenesysClients()
     .then(() => {
