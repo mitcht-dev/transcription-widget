@@ -1,5 +1,3 @@
-// webpack.config.mjs (or webpack.config.js if "type": "module")
-
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -11,8 +9,7 @@ export default {
   mode: 'development',
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
-    // Now we can safely use __dirname just like before
+    filename: 'index.js',
     path: path.resolve(__dirname, 'dist'), 
   },
 };
