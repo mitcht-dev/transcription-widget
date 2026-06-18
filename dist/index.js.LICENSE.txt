@@ -1,0 +1,8 @@
+/*
+  * purecloud-client-app-sdk
+  * @copyright Copyright (C) 2026 Genesys Telecommunications Laboratories, Inc.}
+  * @license MIT
+  *
+  * This software comprises other FOSS software.
+  * Attribution and license information can be found at https://github.com/MyPureCloud/client-app-sdk/blob/master/README.md
+  */
