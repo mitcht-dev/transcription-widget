@@ -30,7 +30,7 @@ function setupGenesysClients() {
   console.log('TESTING', environment);
 
   environment = transcriptApp.gcEnvironment;
-  console.log('TESTING', environment);
+  console.log('TESTING', transcriptApp);
 
   // Configure and Authenticate Platform Client
   client.setPersistSettings(true, appName);
@@ -51,12 +51,7 @@ function initializeWidget() {
 
   setupGenesysClients()
     .then(() => {
-      if(userDetails) {
-        document.getElementById('span_environment').innerText = environment;
-        document.getElementById('span_language').innerText = language;
-        document.getElementById('span_name').innerText = userDetails.name;
-        console.log('Finished setup.');
-      }
+
     });
 }
 
