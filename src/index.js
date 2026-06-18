@@ -12,7 +12,7 @@ const qParamConversationId = 'gcConversationId';
 // Default values are assigned but values should 
 // be set on the function 'assignConfiguration'
 let language = 'en-us';
-let environment = 'usw2.purecloud.com';
+let environment = 'usw2.pure.cloud';
 
 /**
  * Configure both the Platform SDK and the Client App SDK
@@ -30,7 +30,7 @@ function setupGenesysClients() {
   console.log('TESTING', environment);
 
   environment = transcriptApp.gcEnvironment;
-  console.log('TESTING', transcriptApp);
+  console.log('TESTING', environment);
 
   // Configure and Authenticate Platform Client
   client.setPersistSettings(true, appName);
