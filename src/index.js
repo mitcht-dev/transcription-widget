@@ -5,8 +5,9 @@ const clientId = "85c16c77-dca7-4d60-b67a-6f09658aa043";
 const redirectUri = 'https://mitcht-dev.github.io/transcription-widget/';
 
 const appName = 'Transcript App';
-const qParamLanguage = 'language';
-const qParamEnvironment = 'environment';
+const qParamLanguage = 'gcLangTag';
+const qParamHostOrigin = 'gcHostOrigin';
+const qParamConversationId = 'gcConversationId';
 
 // Default values are assigned but values should 
 // be set on the function 'assignConfiguration'
@@ -14,7 +15,6 @@ let language = 'en-us';
 let environment = 'mypurecloud.com';
 
 let userDetails = null;
-let conversationId = null;
 
 /**
  * Configure both the Platform SDK and the Client App SDK
@@ -34,7 +34,7 @@ function setupGenesysClients() {
 
   return client.loginPKCEGrant(clientId, redirectUri)
     .then(data => 
-      console.log('Success message!')
+      console.log('Success message!: ', qParamConversationId)
     )
     .catch(err => console.error('Authentication Failed:', err));
 }
@@ -56,9 +56,18 @@ function assignConfiguration() {
     if (local_lang) language = local_lang;
   }
 
-  if (searchParams.has(qParamEnvironment)) {
-    environment = searchParams.get(qParamEnvironment);
-    localStorage.setItem(`${appName}_environment`, environment);
+  if (searchParams.has(qParamHostOrigin)) {
+    let hostOrigin = searchParams.get(qParamHostOrigin);
+    
+    try {
+      let originUrl = new URL(hostOrigin);
+      
+      environment = originUrl.hostname.replace(/^apps?\./i, '');
+      
+      localStorage.setItem(`${appName}_environment`, environment);
+    } catch (e) {
+      console.error('Could not parse host origin:', e);
+    }
   } else {
     let local_env = localStorage.getItem(`${appName}_environment`);
     if (local_env) environment = local_env;
