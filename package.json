@@ -4,25 +4,5 @@
   },
   "allowScripts": {
     "purecloud-client-app-sdk@2.6.10": true
-  },
-  "name": "transcription-widget",
-  "version": "1.0.0",
-  "description": "",
-  "main": "websocket.js",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mitcht-dev/transcription-widget.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/mitcht-dev/transcription-widget/issues"
-  },
-  "homepage": "https://github.com/mitcht-dev/transcription-widget#readme"
+  }
 }
