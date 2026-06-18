@@ -1,7 +1,7 @@
 import platformClientModule from 'platformClient';
 import ClientAppModule from 'clientAppSdk';
 
-// Safely unwrap the converted ESM bundle
+// Safely unwrap the CJS-to-ESM payload
 const platformClient = platformClientModule.default || platformClientModule;
 const ClientApp = ClientAppModule.default || ClientAppModule;
 
