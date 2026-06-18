@@ -14,6 +14,7 @@ function setupGenesysClients() {
   const usersApi = new platformClient.UsersApi();
 
   let environment = 'usw2.pure.cloud';
+  let hostOrigin;
 
   const urlParams = new URLSearchParams(window.location.search);
 
@@ -22,6 +23,13 @@ function setupGenesysClients() {
     sessionStorage.setItem('gc_environment', environment);
   } else {
     environment = sessionStorage.getItem('gc_environment') || environment;
+  }
+
+  if (urlParams.has('gcHostOrigin')) {
+    hostOrigin = urlParams.get('gcHostOrigin');
+    sessionStorage.setItem('gc_host_origin', hostOrigin);
+  } else {
+    sessionStorage.getItem('gc_host_origin');
   }
 
   // Configure Client App
