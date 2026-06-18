@@ -76,19 +76,26 @@ function assignConfiguration() {
   }
 }
 
-// After page loads...
-window.addEventListener('load', (event) => {
+function initializeWidget() {
+  console.log("Widget script is running...");
   assignConfiguration();
+  
   console.log(`environment: ${environment}`);
   console.log(`language: ${language}`);
 
   setupGenesysClients()
     .then(() => {
-      // Display values to the page
-      document.getElementById('span_environment').innerText = environment;
-      document.getElementById('span_language').innerText = language;
-      document.getElementById('span_name').innerText = userDetails.name;
+      if(userDetails) {
+        document.getElementById('span_environment').innerText = environment;
+        document.getElementById('span_language').innerText = language;
+        document.getElementById('span_name').innerText = userDetails.name;
+        console.log('Finished setup.');
+      }
+    });
+}
 
-      console.log('Finished setup.');
-    })
-});
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeWidget);
+} else {
+    initializeWidget();
+}
