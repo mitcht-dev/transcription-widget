@@ -33,14 +33,8 @@ function setupGenesysClients() {
   client.setPersistSettings(true, appName);
   client.setEnvironment(environment);
 
-<<<<<<< HEAD
-  // Use loginPKCEGrant! The SDK handles the verifier, challenge, and code automatically.
   return client.loginPKCEGrant(clientId, redirectUri)
-    .then(() => usersApi.getUsersMe())
-=======
-  return client.authorizePKCEGrant(clientId, codeVerifier, authCode, redirectUri)
     .then(data => usersApi.getUsersMe())
->>>>>>> cf8f0c7 (stop ignoring nodes)
     .then(data => {
       userDetails = data;
 
@@ -91,16 +85,6 @@ window.addEventListener('load', (event) => {
   setupGenesysClients()
     .then(() => {
       // Display values to the page
-<<<<<<< HEAD
-      if(userDetails) {
-        document.getElementById('span_environment').innerText = environment;
-        document.getElementById('span_language').innerText = language;
-        document.getElementById('span_name').innerText = userDetails.name;
-        console.log('Finished setup.');
-      }
-    });
-});
-=======
       document.getElementById('span_environment').innerText = environment;
       document.getElementById('span_language').innerText = language;
       document.getElementById('span_name').innerText = userDetails.name;
@@ -108,4 +92,3 @@ window.addEventListener('load', (event) => {
       console.log('Finished setup.');
     })
 });
->>>>>>> cf8f0c7 (stop ignoring nodes)
