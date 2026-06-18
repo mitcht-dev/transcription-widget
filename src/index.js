@@ -63,7 +63,7 @@ function setupGenesysClients() {
       // If a user refreshes the page later, the SDK will try to reuse the expired code and fail.
       window.history.replaceState(null, '', redirectUri);
     })
-    .catch(err => console.error('TESTING Authentication Failed:', err));
+    .catch(err => console.log('TESTING Authentication Failed:', err));
 }
 
 function initializeWidget() {
@@ -73,7 +73,7 @@ function initializeWidget() {
     .then(() => {
 
     })
-    .catch(err => console.error(`TESTING ${err}`));
+    .catch(err => console.log(`TESTING ${err}`));
 }
 
 if (document.readyState === 'loading') {
