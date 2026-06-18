@@ -32,7 +32,7 @@ function setupGenesysClients() {
 }
 
 function initializeWidget() {
-  console.log("Widget script is running...");
+  console.log("TESTING Widget script is running...");
 
   setupGenesysClients()
     .then(() => {
