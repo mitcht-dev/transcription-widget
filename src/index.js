@@ -7,23 +7,23 @@ let environment = 'usw2.pure.cloud';
 
 const appName = 'Transcript Widget';
 
-const urlParams = new URLSearchParams(window.location.search);
-let targetEnv = urlParams.get('gcTargetEnv');
-
-if (targetEnv) {
-  sessionStorage.setItem('gc_environment', targetEnv);
-} else {
-  targetEnv = sessionStorage.getItem('gc_environment') || 'usw2.pure.cloud';
-}
-
-environment = targetEnv;
-
 /**
  * Configure both the Platform SDK and the Client App SDK
  */
 function setupGenesysClients() {
   const client = platformClient.ApiClient.instance;
   const usersApi = new platformClient.UsersApi();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  let targetEnv = urlParams.get('gcTargetEnv');
+
+  if (targetEnv) {
+    sessionStorage.setItem('gc_environment', targetEnv);
+  } else {
+    targetEnv = sessionStorage.getItem('gc_environment') || 'usw2.pure.cloud';
+  }
+
+  environment = targetEnv;
 
   // Configure Client App
   let transcriptApp = new ClientApp({
