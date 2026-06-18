@@ -14,8 +14,6 @@ const qParamConversationId = 'gcConversationId';
 let language = 'en-us';
 let environment = 'usw2.purecloud.com';
 
-let userDetails = null;
-
 /**
  * Configure both the Platform SDK and the Client App SDK
  */
