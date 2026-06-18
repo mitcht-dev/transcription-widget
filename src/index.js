@@ -2,12 +2,11 @@ import platformClient from 'purecloud-platform-client-v2';
 import ClientApp from 'purecloud-client-app-sdk';
 
 const clientId = "85c16c77-dca7-4d60-b67a-6f09658aa043";
-const redirectUri = 'https://mitcht-dev.github.io/transcript-widget/?gcHostOrigin={{gcHostOrigin}}&gcTargetEnv={{gcTargetEnv}}&gcLangTag={{gcLangTag}}&gcConversationId={{gcConversationId}}';
+const redirectUri = 'https://mitcht-dev.github.io/transcription-widget/';
 
 const appName = 'Transcript App';
 const qParamLanguage = 'language';
 const qParamEnvironment = 'environment';
-const qParamConversationId = 'gcConversationId';
 
 // Default values are assigned but values should 
 // be set on the function 'assignConfiguration'
@@ -34,15 +33,9 @@ function setupGenesysClients() {
   client.setEnvironment(environment);
 
   return client.loginPKCEGrant(clientId, redirectUri)
-    .then(data => usersApi.getUsersMe())
-    .then(data => {
-      userDetails = data;
-
-      transcriptApp.alerting.showToastPopup(
-        `Hi ${userDetails.name}`,
-        'Never gonna give you up, never gonna let you down 😊'
-      );
-    })
+    .then(data => 
+      console.log('Success message!')
+    )
     .catch(err => console.error('Authentication Failed:', err));
 }
 
@@ -69,10 +62,6 @@ function assignConfiguration() {
   } else {
     let local_env = localStorage.getItem(`${appName}_environment`);
     if (local_env) environment = local_env;
-  }
-
-  if (searchParams.has(qParamConversationId)) {
-    conversationId = searchParams.get(qParamConversationId);
   }
 }
 
