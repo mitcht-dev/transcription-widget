@@ -18,19 +18,15 @@ function setupGenesysClients() {
     gcHostOriginQueryParam: 'gcHostOrigin',
     gcTargetEnvQueryParam: 'gcTargetEnv'
   });
+  console.log(`TESTING ${transcriptApp.gcEnvironment}`);
 
   // 5. Configure and Authenticate Platform Client
   client.setPersistSettings(true, appName);
   client.setEnvironment(transcriptApp.gcEnvironment);
-  console.log(`TESTING ${transcriptApp.gcEnvironment}`);
 
   return client.loginPKCEGrant(clientId, redirectUri)
     .then(data => {
       console.log('Authentication Successful!', data);
-      
-      // Pro-Tip: Clean the auth code out of the URL. 
-      // If a user refreshes the page later, the SDK will try to reuse the expired code and fail.
-      window.history.replaceState(null, '', redirectUri);
     })
     .catch(err => console.error('Authentication Failed:', err));
 }
