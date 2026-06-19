@@ -3,6 +3,7 @@ import ClientApp from 'purecloud-client-app-sdk';
 
 const clientId = '85c16c77-dca7-4d60-b67a-6f09658aa043';
 const redirectUri = 'https://mitcht-dev.github.io/transcript-widget/';
+const environment = 'usw2.pure.cloud';
 
 console.log("TESTING: Step 1 - Script loaded and imports executed.");
 
@@ -10,11 +11,13 @@ try {
   const client = platformClient.ApiClient.instance;
   console.log("TESTING: Step 2 - platformClient instantiated successfully.");
 
-  const app = new ClientApp({
+  const transcriptApp = new ClientApp({
     gcHostOriginQueryParam: 'gcHostOrigin',
     gcTargetEnvQueryParam: 'gcTargetEnv',
   });
   console.log("TESTING: Step 3 - ClientApp instantiated successfully.");
+
+  client.setEnvironment(environment);
 
   client.loginPKCEGrant(clientId, redirectUri)
   .then(data => {
