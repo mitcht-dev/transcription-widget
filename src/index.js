@@ -1,6 +1,8 @@
 import platformClient from 'purecloud-platform-client-v2';
 import ClientApp from 'purecloud-client-app-sdk';
 
+const redirectUri = 'https://mitcht-dev.github.io/transcript-widget/';
+
 console.log("TESTING: Step 1 - Script loaded and imports executed.");
 
 try {
@@ -9,10 +11,18 @@ try {
 
   const app = new ClientApp({
     gcHostOriginQueryParam: 'gcHostOrigin',
-    gcTargetEnvQueryParam: 'gcTargetEnv'
+    gcTargetEnvQueryParam: 'gcTargetEnv',
   });
   console.log("TESTING: Step 3 - ClientApp instantiated successfully.");
 
-} catch (error) {
-  console.error("TESTING: Error", error.message, error);
+  client.loginPKCEGrant(clientId, redirectUri)
+  .then(data => {
+    console.log('TESTING: Step 3 - authentication successful');
+  })
+  .catch(e => {
+    console.log('TESTING: Error', e.message, e);
+  })
+
+} catch (e) {
+  console.error("TESTING: Error", e.message, e);
 }
