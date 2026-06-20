@@ -17,6 +17,7 @@
   "description": "",
   "main": "websocket.js",
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.7",
     "webpack": "^5.107.2",
     "webpack-cli": "^6.0.1",
@@ -24,7 +25,8 @@
   },
   "scripts": {
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -37,5 +39,5 @@
   "bugs": {
     "url": "https://github.com/mitcht-dev/transcript-widget/issues"
   },
-  "homepage": "https://github.com/mitcht-dev/transcript-widget#readme"
+  "homepage": "https://github.com/mitcht-dev/transcript-widget/"
 }

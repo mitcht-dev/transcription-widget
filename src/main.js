@@ -2,7 +2,7 @@ import platformClient from 'purecloud-platform-client-v2';
 import ClientApp from 'purecloud-client-app-sdk';
 
 const clientId = '85c16c77-dca7-4d60-b67a-6f09658aa043';
-const redirectUri = window.location.origin + '/callback.html';
+const redirectUri = window.location.origin + '/auth.html';
 const environment = 'usw2.pure.cloud';
 
 console.log("TESTING: Step 1 - Script loaded and imports executed.");
