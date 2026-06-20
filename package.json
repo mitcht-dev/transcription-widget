@@ -5,15 +5,22 @@
   },
   "allowScripts": {
     "purecloud-client-app-sdk@2.6.10": true,
-    "purecloud-platform-client-v2@255.0.0": true
+    "purecloud-platform-client-v2@255.0.0": true,
+    "webpack-dev-server@5.2.5": true,
+    "webpack@5.107.2": true,
+    "webpack-cli@6.0.1": true,
+    "html-webpack-plugin@5.6.7": true,
+    "snyk@1.1297.3": true
   },
   "name": "transcript-widget",
   "version": "1.0.0",
   "description": "",
   "main": "websocket.js",
   "devDependencies": {
+    "html-webpack-plugin": "^5.6.7",
     "webpack": "^5.107.2",
-    "webpack-cli": "^7.0.3"
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.5"
   },
   "scripts": {
     "build": "webpack",

@@ -1,21 +1,28 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default {
   mode: 'development',
-  entry: './src/index.js',
-  output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'), 
+
+  entry: {
+    main: './src/main.js',
+    callback: './src/auth.js'
   },
+  
+  output: {
+    filename: '[name].js', 
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+  },
+  
   resolve: {
     alias: {
       'purecloud-platform-client-v2': path.resolve(__dirname, 'node_modules/purecloud-platform-client-v2/src/purecloud-platform-client-v2')
     },
-    // Webpack 5 needs this to ignore Node.js core modules
     fallback: {
       path: false,
       crypto: false,
@@ -27,5 +34,18 @@ export default {
       https: false,
       buffer: false
     }
-  }
+  },
+  
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      filename: 'index.html',
+      chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/auth.html',
+      filename: 'auth.html',
+      chunks: ['auth']
+    })
+  ]
 };
