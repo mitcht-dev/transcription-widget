@@ -208,6 +208,11 @@ try {
     if (message) {
       console.log(`TESTING: Websocket message ${message}`);
     }
+
+    const newLine = document.createElement('p');
+    newLine.innerText = message;
+
+    document.getElementById('conversationTranscript').append(newLine);
   }
 
   function onWebsocketError(e) {
