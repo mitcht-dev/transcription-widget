@@ -172,6 +172,10 @@ try {
         console.log(`TESTING: postNotificationsChannels success! data: ${JSON.stringify(data, null, 2)}`);
 
         const websocket = new WebSocket(connectUri);
+        websocket.addEventListener("open", onWebsocketOpen);
+        websocket.addEventListener("message", onWebsocketMessage);
+        websocket.addEventListener("error", onWebsocketError);
+        websocket.addEventListener("close", onWebsocketClose);
 
         const subscriptionTopic = `v2.conversations.${conversationId}.transcription`;
         let topic = [{ id: subscriptionTopic }];
