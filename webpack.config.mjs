@@ -10,13 +10,14 @@ export default {
 
   entry: {
     main: './src/main.js',
-    callback: './src/auth.js'
+    auth: './src/auth.js'
   },
   
   output: {
     filename: '[name].js', 
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    publicPath: './'
   },
   
   resolve: {
