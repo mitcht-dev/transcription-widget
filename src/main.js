@@ -22,6 +22,7 @@ if (urlParams.has(qConversationIdQueryParam)) {
 }
 console.log('TESTING: Conversation ID: ', conversationId);
 
+let websocket;
 let pingInterval;
 
 try {
@@ -171,7 +172,7 @@ try {
 
         console.log(`TESTING: postNotificationsChannels success! data: ${JSON.stringify(data, null, 2)}`);
 
-        const websocket = new WebSocket(connectUri);
+        websocket = new WebSocket(connectUri);
         websocket.addEventListener("open", onWebsocketOpen);
         websocket.addEventListener("message", onWebsocketMessage);
         websocket.addEventListener("error", onWebsocketError);
