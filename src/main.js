@@ -16,6 +16,7 @@ const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('gcConversationId')) {
   conversationId = urlParams.get('gcConversationID');
 }
+console.log('TESTING: Conversation ID: ', conversationId);
 
 try {
   const client = platformClient.ApiClient.instance;
@@ -167,7 +168,7 @@ try {
         const websocket = new WebSocket(connectUri);
 
         const subscriptionTopic = `v2.conversations.${conversationId}.transcription`;
-        let topic = [{id: subscriptionTopic}];
+        let topic = [{ id: subscriptionTopic }];
 
         notificationsInstance.putNotificationsChannelSubscriptions(channelId, body)
           .then((data) => {
