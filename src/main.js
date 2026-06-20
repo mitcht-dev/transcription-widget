@@ -1,6 +1,8 @@
 import platformClient from 'purecloud-platform-client-v2';
 import ClientApp from 'purecloud-client-app-sdk';
 
+const qConversationIdQueryParam = 'gcConversationId';
+
 const clientId = '85c16c77-dca7-4d60-b67a-6f09658aa043';
 const redirectUri = '';
 const environment = 'usw2.pure.cloud';
@@ -9,12 +11,14 @@ console.log('TESTING: redirectUri: ', redirectUri);
 
 console.log("TESTING: Script loaded and imports executed.");
 
+const urlParams = new URLSearchParams(window.location.search);
 let conversationId = null;
 
-if (!(conversationId = sessionStorage.getItem('conversationId'))) {
-  conversationId = new URLSearchParams(window.location.search).getItem('gcConversationId');
-  sessionStorage.setItem('conversationId', conversationId);
-
+if (urlParams.has(qConversationIdQueryParam)) {
+  conversationId = urlParams.get(qConversationIdQueryParam);
+  sessionStorage.setItem('gc_conversation_id', conversationId);
+} else {
+  conversationId = sessionStorage.getItem('gc_conversation_id');
 }
 console.log('TESTING: Conversation ID: ', conversationId);
 
