@@ -9,6 +9,14 @@ console.log('TESTING: redirectUri: ', redirectUri);
 
 console.log("TESTING: Script loaded and imports executed.");
 
+let conversationId = null;
+
+const urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.has('gcConversationId')) {
+  conversationId = urlParams.get('gcConversationID');
+}
+
 try {
   const client = platformClient.ApiClient.instance;
   console.log("TESTING: platformClient instantiated successfully.");
