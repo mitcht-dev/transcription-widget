@@ -124,15 +124,14 @@ try {
 
         runAppLogic();
       } else {
-        throw new Error(data.error_description || "Token exchange failed");
+        throw new Error(`TESTING: ${data.error_description || "Token exchange failed"}`);
       }
     } catch (error) {
-      console.error("Auth Error:", error);
+      console.error("TESTING: Auth Error:", error);
       document.getElementById('status').innerText = "Failed to authenticate.";
     }
   }
 
-  // --- STEP 4: Start doing Genesys things ---
   async function runAppLogic() {
     console.log('TESTING: runAppLogic started');
     const usersApi = new platformClient.UsersApi();
@@ -141,14 +140,40 @@ try {
       const me = await usersApi.getUsersMe();
       document.getElementById('status').innerText = `Welcome, ${me.name}!`;
 
-      // Check if we are currently looking at an interaction
-      if (myClientApp.interactionId) {
-        console.log(`Agent is currently on Interaction ID: ${myClientApp.interactionId}`);
-        // You can now query the Conversations API with this ID
-      }
+      listenToTranscript();
     } catch (err) {
-      console.error("API Error", err);
+      console.error("TESTING: API Error", err);
     }
+  }
+
+  async function listenToTranscript() {
+    console.log('TESTING: listenToTranscript started');
+    let notificationsInstance = new platformClient.NotificationsApi();
+
+    notificationsInstance.postNotificationsChannels(opts)
+      .then((data) => {
+        let { channelId: id, connectUri } = data;
+
+        console.log(`TESTING: postNotificationsChannels success! data: ${JSON.stringify(data, null, 2)}`);
+
+        const websocket = new WebSocket(connectUri);
+
+        const subscriptionTopic = `v2.conversations.${conversationId}.transcription`;
+        let topic = [{id: subscriptionTopic}];
+
+        notificationsInstance.putNotificationsChannelSubscriptions(channelId, body)
+          .then((data) => {
+            console.log(`TESTING: putNotificationsChannelSubscriptions success! data: ${JSON.stringify(data, null, 2)}`);
+          })
+          .catch((err) => {
+            console.log('TESTING: There was a failure calling putNotificationsChannelSubscriptions');
+            console.error(err);
+          });
+      })
+      .catch((err) => {
+        console.log('TESTING: There was a failure calling postNotificationsChannels');
+        console.error(err);
+      });
   }
 
   init();
