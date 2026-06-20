@@ -150,7 +150,7 @@ try {
     console.log('TESTING: listenToTranscript started');
     let notificationsInstance = new platformClient.NotificationsApi();
 
-    notificationsInstance.postNotificationsChannels(opts)
+    notificationsInstance.postNotificationsChannels()
       .then((data) => {
         let { channelId: id, connectUri } = data;
 
