@@ -28,6 +28,13 @@ try {
   async function handleLoginClick() {
     document.getElementById('status').innerText = "Opening secure login window...";
 
+    const popupWidth = 500;
+    const popupHeight = 600;
+    const left = window.screenX + (window.outerWidth - popupWidth) / 2;
+    const top = window.screenY + (window.outerHeight - popupHeight) / 2;
+
+    const popup = window.open('', 'GenesysAuth', `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`);
+
     pkceVerifier = client.generatePKCECodeVerifier(128);
     const codeChallenge = await client.computePKCECodeChallenge(pkceVerifier);
 
@@ -38,11 +45,7 @@ try {
       `code_challenge=${codeChallenge}&` +
       `code_challenge_method=S256`;
 
-    const popupWidth = 500;
-    const popupHeight = 600;
-    const left = window.screenX + (window.outerWidth - popupWidth) / 2;
-    const top = window.screenY + (window.outerHeight - popupHeight) / 2;
-    window.open(authUrl, 'GenesysAuth', `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`);
+    popup.location.href = authUrl;
 
     window.addEventListener('message', authListener);
   }
