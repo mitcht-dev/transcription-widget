@@ -77,11 +77,6 @@ try {
     const left = window.screenX + (window.outerWidth - popupWidth) / 2;
     const top = window.screenY + (window.outerHeight - popupHeight) / 2;
 
-    const popup = window.open('', 'GenesysAuth', `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`);
-
-    pkceVerifier = client.generatePKCECodeVerifier(128);
-    const codeChallenge = await client.computePKCECodeChallenge(pkceVerifier);
-
     const authUrl = `https://login.${environment}/oauth/authorize?` +
       `client_id=${clientId}&` +
       `response_type=code&` +
@@ -91,7 +86,12 @@ try {
 
     console.log('TESTING: authUrl: ', authUrl);
 
-    popup.location.href = authUrl;
+    const popup = window.open(authUrl, 'GenesysAuth', `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`);
+
+    pkceVerifier = client.generatePKCECodeVerifier(128);
+    const codeChallenge = await client.computePKCECodeChallenge(pkceVerifier);
+
+    //popup.location.href = authUrl;
 
     window.addEventListener('message', authListener);
   }
