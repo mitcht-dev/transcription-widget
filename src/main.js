@@ -7,7 +7,6 @@ const clientId = '85c16c77-dca7-4d60-b67a-6f09658aa043';
 const redirectUri = 'https://mitcht-dev.github.io/transcript-widget/';
 const environment = 'usw2.pure.cloud';
 const TOKEN_KEY = 'genesys_transcript_tkn';
-console.log('TESTING: redirectUri: ', redirectUri);
 
 console.log("TESTING: Script loaded and imports executed.");
 
@@ -156,11 +155,11 @@ try {
 
     try {
       const me = await usersApi.getUsersMe();
-      //document.getElementById('status').innerText = `Welcome, ${me.name}!`;
 
       userName = me.name;
 
-      document.getElementById('login').visibility = 'none';
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('conversationTranscript').style.display = '';
 
       listenToTranscript();
     } catch (err) {
