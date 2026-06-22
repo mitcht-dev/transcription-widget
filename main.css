@@ -13,25 +13,25 @@ body {
     font-size: smaller;
     color: gray;
 
-    .INTERNAL {
+    &.INTERNAL {
         margin-right: 0;
         margin-left: auto;
     }
 
-    .EXTERNAL {
+    &.EXTERNAL {
         margin-left: 0;
         margin-right: auto;
     }
 }
 
 .transcriptElement {
-    .INTERNAL {
+    &.INTERNAL {
         margin-right: 0;
         margin-left: auto;
         background-color: lightblue;
     }
 
-    .EXTERNAL {
+    &.EXTERNAL {
         margin-left: 0;
         margin-right: auto;
         background-color: lightgray;
