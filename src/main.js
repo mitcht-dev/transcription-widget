@@ -4,7 +4,7 @@ import ClientApp from 'purecloud-client-app-sdk';
 const qConversationIdQueryParam = 'gcConversationId';
 
 const clientId = '85c16c77-dca7-4d60-b67a-6f09658aa043';
-const redirectUri = 'https://mitcht-dev.github.io/transcript-widget/auth.html';
+const redirectUri = 'https://mitcht-dev.github.io/transcript-widget/';
 const environment = 'usw2.pure.cloud';
 const TOKEN_KEY = 'genesys_transcript_tkn';
 
@@ -88,6 +88,8 @@ try {
       `redirect_uri=${encodeURIComponent(redirectUri)}&` +
       `code_challenge=${codeChallenge}&` +
       `code_challenge_method=S256`;
+
+    console.log('TESTING: authUrl: ', authUrl);
 
     popup.location.href = authUrl;
 
