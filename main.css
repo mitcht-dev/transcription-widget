@@ -12,6 +12,7 @@ body {
 .sourceElement {
   font-size: smaller;
   color: gray;
+  width: fit-content;
 }
 .sourceElement.INTERNAL {
   margin-right: 0;
@@ -22,6 +23,9 @@ body {
   margin-right: auto;
 }
 
+.transcriptElement {
+  max-width: 80%;
+}
 .transcriptElement.INTERNAL {
   margin-right: 0;
   margin-left: auto;
