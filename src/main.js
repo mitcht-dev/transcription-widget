@@ -25,6 +25,8 @@ console.log('TESTING: Conversation ID: ', conversationId);
 let websocket;
 let pingInterval;
 
+let userName;
+
 try {
   const client = platformClient.ApiClient.instance;
   console.log("TESTING: platformClient instantiated successfully.");
@@ -154,7 +156,11 @@ try {
 
     try {
       const me = await usersApi.getUsersMe();
-      document.getElementById('status').innerText = `Welcome, ${me.name}!`;
+      //document.getElementById('status').innerText = `Welcome, ${me.name}!`;
+
+      userName = me.name;
+
+      document.getElementById('login').visibility = 'none';
 
       listenToTranscript();
     } catch (err) {
@@ -231,7 +237,7 @@ try {
     } catch {
       message = data?.eventBody;
     }
-    return message?.transcripts?.flatMap(t => `${t.channel}: ${t.alternatives[0].transcript}`)
+    return message?.transcripts?.flatMap(t => `${t.channel === 'internal' ? me.name : t.channel}: ${t.alternatives[0].transcript}`)
       .join('\n');
   }
 
