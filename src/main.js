@@ -237,7 +237,7 @@ try {
     } catch {
       message = data?.eventBody;
     }
-    return message?.transcripts?.flatMap(t => `${t.channel === 'internal' ? me.name : t.channel}: ${t.alternatives[0].transcript}`)
+    return message?.transcripts?.flatMap(t => `${t.channel === 'internal' ? userName : t.channel}: ${t.alternatives[0].transcript}`)
       .join('\n');
   }
 
