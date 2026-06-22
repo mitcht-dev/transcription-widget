@@ -25,6 +25,7 @@ body {
 
 .transcriptElement {
   max-width: 80%;
+  width: fit-content;
   padding: 1em;
   border-radius: 5%;
 }
