@@ -27,7 +27,8 @@ body {
   max-width: 80%;
   width: fit-content;
   padding: 1em;
-  border-radius: 5%;
+  border-radius: 15%;
+  margin-bottom: 0.5em;
 }
 .transcriptElement.INTERNAL {
   margin-right: 0;
