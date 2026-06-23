@@ -217,6 +217,8 @@ try {
     } catch {
       messages = e.data?.eventBody;
     }
+    console.log('TESTING: Websocket message: ', messages);
+    
     messages = messages?.transcripts?.flatMap(t => ({
       source: t.channel,
       transcript: t.alternatives[0].transcript
@@ -226,8 +228,6 @@ try {
     }
 
     messages.forEach(m => {
-      console.log(m);
-
       let parentContainer = document.getElementById('conversationTranscript');
       let previousContainer = parentContainer.lastElementChild;
       let container;
